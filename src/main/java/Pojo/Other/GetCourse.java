@@ -1,4 +1,4 @@
-package Pojo;
+package Pojo.Other;
 
 public class GetCourse {
 

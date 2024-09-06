@@ -1,19 +1,17 @@
 package test;
 
 
-import Pojo.AddPlace;
-import Pojo.Location;
+import Pojo.Other.AddPlace;
+import Pojo.Other.Location;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 
 public class SpecBuilderTest {

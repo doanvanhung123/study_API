@@ -1,6 +1,6 @@
-package Pojo;
+package Pojo.Other;
 
-public class Mobile {
+public class Api {
     private String courseTitle;
     private String price;
 

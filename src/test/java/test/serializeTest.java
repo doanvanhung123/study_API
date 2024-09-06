@@ -1,8 +1,8 @@
 package test;
 
 
-import Pojo.AddPlace;
-import Pojo.Location;
+import Pojo.Other.AddPlace;
+import Pojo.Other.Location;
 
 import java.util.ArrayList;
 import java.util.List;

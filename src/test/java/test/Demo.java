@@ -1,12 +1,11 @@
 package test;
-import Pojo.Api;
-import Pojo.GetCourse;
-import Pojo.WebAutomation;
+import Pojo.Other.Api;
+import Pojo.Other.GetCourse;
+import Pojo.Other.WebAutomation;
 import io.restassured.path.json.JsonPath;
 import org.testng.Assert;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static io.restassured.RestAssured.*;
