@@ -22,6 +22,9 @@ public class StepDefinition extends Utils {
     Response response;
     TestDataBuild testDataBuild = new TestDataBuild();
 
+    public static String place_Id;
+
+
     @Given("Add Place Payload with {string} {string} {string}")
     public void add_place_payload(String name, String language,String address) throws IOException {
         res = given().spec(requestSpecification())
@@ -38,8 +41,6 @@ public class StepDefinition extends Utils {
         }else if(method.equalsIgnoreCase("POST")) {
             response = res.when().post(resources.getResource());
         }
-        response = res.when().post(resources.getResource());
-
     }
 
     @Then("The API call is success with status code {int}")
@@ -50,8 +51,23 @@ public class StepDefinition extends Utils {
 
     @Then("{string} in response body is {string}")
     public void in_response_body_is_ok(String key, String value) {
-        String resp = response.asString();
-        JsonPath js = new JsonPath(resp);
-        Assert.assertEquals(js.get(key), value);
+
+        Assert.assertEquals(getJsonPath(response,key), value);
+    }
+
+    @Then("Verify place_Id created maps to {string} using {string}")
+    public void verify_place_id_created_maps_to_using(String value, String resource) throws IOException {
+        place_Id = getJsonPath(response,"place_id");
+        res = given().spec(requestSpecification()).queryParam("place_id",place_Id);
+        user_calls_with_post_http_request(resource,"get");
+        String place_id = getJsonPath(response,"name");
+        Assert.assertEquals(value,place_id);
+
+    }
+
+    @Given("DeletePlace Payload")
+    public void delete_place_payload() throws IOException {
+        res=given().spec(requestSpecification())
+                .body(testDataBuild.deletePlacePayload(place_Id));
     }
 }

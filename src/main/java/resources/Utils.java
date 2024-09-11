@@ -4,6 +4,8 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import java.io.*;
@@ -19,6 +21,7 @@ public class Utils {
                     .addFilter(RequestLoggingFilter.logRequestTo(log))
                     .addFilter(ResponseLoggingFilter.logResponseTo(log))
                     .setContentType(ContentType.JSON).build();
+            return req;
         }
         return req;
     }
@@ -28,5 +31,11 @@ public class Utils {
         InputStream fis = Utils.class.getClassLoader().getResourceAsStream("global.properties");
         prop.load(fis);
         return prop.getProperty(key);
+    }
+
+    public String getJsonPath(Response response, String key){
+        String resp = response.asString();
+        JsonPath js = new JsonPath(resp);
+        return js.get(key);
     }
 }
